@@ -1,0 +1,36 @@
+{
+    "name": "attraction/articleserializer",
+    "type": "library",
+    "description": "Serialize HTML from Imperavi's Article to JSON blocks",
+    "keywords": [
+        "html",
+        "json",
+        "article",
+        "imperavi",
+        "wysiwyg",
+        "blocks",
+        "serialize",
+        "unserialize"
+    ],
+    "homepage": "https://attr.dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frederic Houle",
+            "email": "frederic@frederichoule.com",
+            "homepage": "https://frederichoule.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/attrdev/articleserializer/issues",
+        "source": "https://github.com/attrdev/articleserializer"
+    },
+    "require": {
+        "php": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Attraction\\": "src/Attraction"
+        }
+    }
+}

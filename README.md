@@ -1,2 +1,1 @@
-# ArticleSerializer
-ArticleSerializer
+# articleserializer
