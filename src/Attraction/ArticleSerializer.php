@@ -140,8 +140,7 @@ class ArticleSerializer
                     $attributes = ['img'];
                     $src = $block->data->src ?? null;
                     $alt = $block->data->alt ?? null;
-                    $width = $block->data->width ?? null;
-                    $height = $block->data->height ?? null;
+                    $id = $block->data->id ?? null;
 
                     if ($src != '') {
                         $attributes[] = sprintf('src="%s"', $src);
@@ -149,11 +148,8 @@ class ArticleSerializer
                     if ($alt != '') {
                         $attributes[] = sprintf('alt="%s"', $alt);
                     }
-                    if ($width != '') {
-                        $attributes[] = sprintf('width="%s"', $width);
-                    }
-                    if ($height != '') {
-                        $attributes[] = sprintf('height="%s"', $height);
+                    if (!is_null($id)) {
+                        $attributes[] = sprintf('data-image="%s"', $id);
                     }
 
                     $buffer[] = sprintf('<%s>', implode(' ', $attributes));
@@ -309,17 +305,14 @@ class ArticleSerializer
                         $data['src'] = $figureNode->getAttribute('src') ?? null;
 
                         $alt = $figureNode->getAttribute('alt') ?? null;
-                        $width = (int) ($figureNode->getAttribute('width') ?? 0);
-                        $height = (int) ($figureNode->getAttribute('height') ?? 0);
+
+                        $id = $figureNode->getAttribute('data-image') ?? null;
+                        if (!is_null($id)) {
+                            $data['id'] = $id;
+                        }
 
                         if (!is_null($alt)) {
                             $data['alt'] = $alt;
-                        }
-                        if ($width > 0) {
-                            $data['width'] = $width;
-                        }
-                        if ($height > 0) {
-                            $data['height'] = $height;
                         }
 
                         return $data;
