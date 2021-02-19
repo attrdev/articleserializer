@@ -260,18 +260,25 @@ class ArticleSerializer
 
                         if (($quoteNode->tagName ?? null) == 'p') {
 
+                            $hasCite = false;
+
                             foreach ($quoteNode->childNodes as $quoteParagraphNode) {
 
-                                if (get_class($quoteParagraphNode) == 'DOMText') {
-                                    $content[] = static::innerHTML($quoteParagraphNode, $document);
-                                    continue;
-                                }
-
                                 if (($quoteParagraphNode->tagName ?? null) == 'cite') {
+                                    $hasCite = true;
                                     $cite = static::innerHTML($quoteParagraphNode, $document);
                                     continue;
                                 }
+
                             }
+
+                            if(!$hasCite) {
+                                $text = trim(static::innerHTML($quoteNode, $document));
+                                if($text != '') {
+                                    $content[] = $text;
+                                }
+                            }
+
                         }
                     }
 
