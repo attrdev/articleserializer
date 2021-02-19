@@ -75,6 +75,8 @@ class ArticleSerializer
                     $content = $block->data->content ?? [];
 
                     foreach ($content as $quoteItem) {
+                        $quoteItem = trim($quoteItem);
+                        if($quoteItem == '') { continue; }
                         $buffer[] = sprintf('<p>%s</p>', $quoteItem);
                     }
 
